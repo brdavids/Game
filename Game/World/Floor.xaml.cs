@@ -18,7 +18,7 @@ namespace Game
 {
     public sealed partial class Floor : UserControl
     {
-        const int TILESIZE = 100;
+        public static int TILESIZE = 90;
         private bool myMoveMode = false;
         private List<Point> myPath = new List<Point>();
 

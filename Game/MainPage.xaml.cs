@@ -63,8 +63,8 @@ namespace Game
             double top = Canvas.GetTop(myCanvas);
             double left = Canvas.GetLeft(myCanvas);
 
-            Canvas.SetTop(myGoal, top + myCanvas.Height - myGoal.Height);
-            Canvas.SetLeft(myGoal, left + myCanvas.Width - myGoal.Width);
+            Canvas.SetTop(myGoal, top + myFloor.Height - myGoal.Height);
+            Canvas.SetLeft(myGoal, left + myFloor.Width - myGoal.Width);
             myGoal.GoalEntered += myGoal_GoalEntered;
             myCanvas.Children.Add(myGoal);
 
@@ -75,20 +75,20 @@ namespace Game
             myCanvas.Children.Add(myPlayer);
 
             List<Point> path1 = new List<Point>();
-            path1.Add(new Point(left + (2 * 100), top));
-            path1.Add(new Point(left + (12 * 100), top));
+            path1.Add(new Point(left + (2 * Floor.TILESIZE), top));
+            path1.Add(new Point(left + (12 * Floor.TILESIZE), top));
             myGuard1 = new Guard(path1, 2);
             Canvas.SetTop(myGuard1, top);
-            Canvas.SetLeft(myGuard1, left + (12 * 100));
+            Canvas.SetLeft(myGuard1, left + (12 * Floor.TILESIZE));
             myGuards.Add(myGuard1);
             myCanvas.Children.Add(myGuard1);
 
             List<Point> path2 = new List<Point>();
-            path2.Add(new Point(left + (7 * 100), top));
-            path2.Add(new Point(left + (7 * 100), top + (7 * 100)));
+            path2.Add(new Point(left + (7 * Floor.TILESIZE), top));
+            path2.Add(new Point(left + (7 * Floor.TILESIZE), top + (7 * Floor.TILESIZE)));
             myGuard2 = new Guard(path2, 3);
-            Canvas.SetTop(myGuard2, top + (7 * 100));
-            Canvas.SetLeft(myGuard2, left + (7 * 100));
+            Canvas.SetTop(myGuard2, top + (7 * Floor.TILESIZE));
+            Canvas.SetLeft(myGuard2, left + (7 * Floor.TILESIZE));
             myGuards.Add(myGuard2);
             myCanvas.Children.Add(myGuard2);
 
