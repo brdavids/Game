@@ -14,7 +14,7 @@ using Windows.UI.Xaml.Navigation;
 
 // The User Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234236
 
-namespace Game2
+namespace Game
 {
     public sealed partial class Floor : UserControl
     {
@@ -22,7 +22,7 @@ namespace Game2
         private bool myMoveMode = false;
         private List<Point> myPath = new List<Point>();
 
-        public event EventHandler PointerExited;
+        public event EventHandler MoveModeStopped;
 
         public bool MoveMode
         {
@@ -61,9 +61,15 @@ namespace Game2
                     Grid.SetRow(tile, r);
                     Grid.SetColumn(tile, c);
                     tile.TileEntered += tile_TileEntered;
+                    tile.TileTapped += tile_TileTapped;
                     myGrid.Children.Add(tile);
                 }
             }
+        }
+
+        void tile_TileTapped(object sender, EventArgs e)
+        {
+            if (MoveModeStopped != null) MoveModeStopped(this, null);
         }
 
         void tile_TileEntered(object sender, EventArgs e)
@@ -82,8 +88,7 @@ namespace Game2
 
         private void myGrid_PointerExited(object sender, PointerRoutedEventArgs e)
         {
-            if (myMoveMode && PointerExited != null)
-                PointerExited(this, null);
+            if (myMoveMode && MoveModeStopped != null) MoveModeStopped(this, null);
         }
     }
 }

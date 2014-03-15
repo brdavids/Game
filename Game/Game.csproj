@@ -7,7 +7,7 @@
     <ProjectGuid>{5E1A7F29-518B-488B-899E-272F8DC11ACA}</ProjectGuid>
     <OutputType>AppContainerExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Game2</RootNamespace>
+    <RootNamespace>Game</RootNamespace>
     <AssemblyName>Game2</AssemblyName>
     <DefaultLanguage>en-US</DefaultLanguage>
     <FileAlignment>512</FileAlignment>

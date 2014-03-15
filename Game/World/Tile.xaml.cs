@@ -15,7 +15,7 @@ using Windows.UI.Xaml.Navigation;
 
 // The User Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234236
 
-namespace Game2
+namespace Game
 {
     public sealed partial class Tile : UserControl
     {
@@ -24,6 +24,7 @@ namespace Game2
         private bool myFilled = false;
 
         public event EventHandler TileEntered;
+        public event EventHandler TileTapped;
 
         public bool MoveMode
         {
@@ -60,8 +61,15 @@ namespace Game2
                     myTile.Fill = new SolidColorBrush(Colors.Gray);
                 }
 
-                if (TileEntered != null)
-                    TileEntered(this, null);
+                if (TileEntered != null) TileEntered(this, null);
+            }
+        }
+
+        private void myTile_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            if (MoveMode)
+            {
+                if (TileTapped != null) TileTapped(this, null);
             }
         }
     }

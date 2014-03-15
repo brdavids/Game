@@ -14,7 +14,7 @@ using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
-namespace Game2
+namespace Game
 {
     //IDEA: Levels can be composed of multiple floors chained together
 
@@ -34,7 +34,6 @@ namespace Game2
         Guard myGuard1;
         Guard myGuard2;
         List<Guard> myGuards = new List<Guard>();
-
         Floor myFloor = new Floor();
         Goal myGoal = new Goal();
         List<Point> myPlayerMoveQueue = new List<Point>();
@@ -59,7 +58,7 @@ namespace Game2
 
         private void SetupLevel()
         {
-            myFloor.PointerExited += myFloor_PointerExited;
+            myFloor.MoveModeStopped += myFloor_PointerExited;
             myCanvas.Children.Add(myFloor);
             double top = Canvas.GetTop(myCanvas);
             double left = Canvas.GetLeft(myCanvas);
@@ -148,7 +147,7 @@ namespace Game2
                 double dy = Canvas.GetTop(myPlayer) - y;
                 if (Math.Abs(dx) < 50 && Math.Abs(dy) < 50)
                 {
-                    myTxtLoser.Visibility = Windows.UI.Xaml.Visibility.Visible;
+                    myTxtResult.Visibility = Windows.UI.Xaml.Visibility.Visible;
                     myGuardsTimer.Stop();
                     myPlayerTimer.Stop();
                 }
@@ -170,6 +169,9 @@ namespace Game2
             
         }
 
+        /// <summary>
+        /// Starts moving player from start to finish of path
+        /// </summary>
         private void Go()
         {
             myFloor.MoveMode = false;
@@ -198,6 +200,11 @@ namespace Game2
             myPlayer.PlayerSelected -= myPlayer_PlayerSelected;
         }
 
+        /// <summary>
+        /// Moves player one animation frame towards next position
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         void myPlayerTimer_Tick(object sender, object e)
         {
             if (myPlayerMoveQueue.Count > 0)
@@ -216,9 +223,14 @@ namespace Game2
             if(Math.Abs((Canvas.GetLeft(myPlayer) - Canvas.GetLeft(myGoal))) < 50 &&
                 Math.Abs(Canvas.GetTop(myPlayer) - Canvas.GetTop(myGoal)) < 50)
             {
-                myTxtLoser.Text = "You Win!";
-                myTxtLoser.Visibility = Windows.UI.Xaml.Visibility.Visible;
+                myTxtResult.Text = "You Win!";
+                myTxtResult.Visibility = Windows.UI.Xaml.Visibility.Visible;
             }
+        }
+
+        private void myTxtResult_Tapped(object sender, TappedRoutedEventArgs e)
+        {
+            Application.Current.Exit();
         }
     }
 }
