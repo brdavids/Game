@@ -21,25 +21,23 @@ namespace Game
         public bool Selected = false;
 
         public event EventHandler PlayerSelected;
+        public event EventHandler PlayerDeselected;
 
         public Player()
         {
             this.InitializeComponent();
         }
 
-        private void Grid_Tapped(object sender, TappedRoutedEventArgs e)
+        private void Grid_PointerPressed(object sender, PointerRoutedEventArgs e)
         {
             Selected = !Selected;
-            if (Selected)
-            {
-                //mySelectionBox.Visibility = Windows.UI.Xaml.Visibility.Visible;
-                if (PlayerSelected != null)
-                    PlayerSelected(this, null);
-            }
-            else
-            {
-                //mySelectionBox.Visibility = Windows.UI.Xaml.Visibility.Collapsed;
-            }
+            if (Selected && PlayerSelected != null) PlayerSelected(this, null);
+        }
+
+        private void Grid_PointerReleased(object sender, PointerRoutedEventArgs e)
+        {
+            Selected = !Selected;
+            if (!Selected && PlayerDeselected != null) PlayerDeselected(this, null);
         }
     }
 }

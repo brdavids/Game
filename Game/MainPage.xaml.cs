@@ -71,6 +71,7 @@ namespace Game
             Canvas.SetTop(myPlayer, top);
             Canvas.SetLeft(myPlayer, left);
             myPlayer.PlayerSelected += myPlayer_PlayerSelected;
+            myPlayer.PlayerDeselected += myPlayer_PlayerDeselected;
             myCanvas.Children.Add(myPlayer);
 
             List<Point> path1 = new List<Point>();
@@ -96,9 +97,15 @@ namespace Game
             myPlayerTimer.Tick += myPlayerTimer_Tick;
         }
 
+        void myPlayer_PlayerDeselected(object sender, EventArgs e)
+        {
+            myFloor.MoveMode = false;
+        }
+
         void myFloor_PointerExited(object sender, EventArgs e)
         {
             Go();
+
         }
 
         void myGuardsTimer_Tick(object sender, object e)
