@@ -1,0 +1,7 @@
+- Level editor / generator (xml? csv?)
+- Walls / obstacles
+- Prevent cheating by using multiple fingers
+- Main menu
+- Visual indication of MoveMode
+- Move counter for scoring
+- No diagonal movement?
