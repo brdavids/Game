@@ -1,0 +1,31 @@
+﻿<UserControl
+    x:Class="Game2.Guard"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Game2"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    d:DesignHeight="100"
+    d:DesignWidth="100">
+    
+    <Grid Width="100" Height="100">
+        <Ellipse Stroke="White" StrokeThickness="5" Fill="#FFC12727" Margin="5"/>
+        <Rectangle HorizontalAlignment="Left" Height="15" Margin="27,34,0,0" StrokeThickness="5" VerticalAlignment="Top" Width="15" Fill="White"/>
+        <Rectangle HorizontalAlignment="Left" Height="15" Margin="58,34,0,0" StrokeThickness="5" VerticalAlignment="Top" Width="15" Fill="White"/>
+        <Rectangle x:Name="myPupil1" HorizontalAlignment="Left" Height="8" Margin="27,41,0,0" StrokeThickness="5" VerticalAlignment="Top" Width="7" Fill="Black"/>
+        <Rectangle x:Name="myPupil2" HorizontalAlignment="Left" Height="8" Margin="58,41,0,0" StrokeThickness="5" VerticalAlignment="Top" Width="7" Fill="Black"/>
+        <Rectangle HorizontalAlignment="Left" Height="5" Margin="33,24,0,0" StrokeThickness="5" VerticalAlignment="Top" Width="15" Fill="White" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto">
+            <Rectangle.RenderTransform>
+                <CompositeTransform Rotation="22.098"/>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <Rectangle HorizontalAlignment="Left" Height="5" Margin="52.666,25,0,0" StrokeThickness="5" VerticalAlignment="Top" Width="15" Fill="White" RenderTransformOrigin="0.5,0.5" UseLayoutRounding="False" d:LayoutRounding="Auto">
+            <Rectangle.RenderTransform>
+                <CompositeTransform Rotation="-19.562"/>
+            </Rectangle.RenderTransform>
+        </Rectangle>
+        <Rectangle HorizontalAlignment="Left" Height="5" Margin="34,71,0,0" StrokeThickness="5" VerticalAlignment="Top" Width="31" Fill="White"/>
+
+    </Grid>
+</UserControl>
