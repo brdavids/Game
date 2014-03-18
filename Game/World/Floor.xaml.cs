@@ -14,11 +14,11 @@ using Windows.UI.Xaml.Navigation;
 
 // The User Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234236
 
-namespace Game
+namespace Game.World
 {
     public sealed partial class Floor : UserControl
     {
-        public static int TILESIZE = 90;
+        public static int TILESIZE = 100;
         private bool myMoveMode = false;
         private List<Point> myPath = new List<Point>();
 
@@ -61,13 +61,14 @@ namespace Game
                     Grid.SetRow(tile, r);
                     Grid.SetColumn(tile, c);
                     tile.TileEntered += tile_TileEntered;
-                    tile.TileTapped += tile_TileTapped;
+                    tile.CancelMoveMode += tile_CancelMoveMode;
+                    if (c == 4 && r != 0) tile.TileType = Tile.Type.wall;
                     myGrid.Children.Add(tile);
                 }
             }
         }
 
-        void tile_TileTapped(object sender, EventArgs e)
+        void tile_CancelMoveMode(object sender, EventArgs e)
         {
             if (MoveModeStopped != null) MoveModeStopped(this, null);
         }

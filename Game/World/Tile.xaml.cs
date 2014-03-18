@@ -15,16 +15,38 @@ using Windows.UI.Xaml.Navigation;
 
 // The User Control item template is documented at http://go.microsoft.com/fwlink/?LinkId=234236
 
-namespace Game
+namespace Game.World
 {
+    /// <summary>
+    /// Base class for tiles added to the floor class
+    /// </summary>
     public sealed partial class Tile : UserControl
     {
         private bool myMoveMode = false;
-
         private bool myFilled = false;
+        private SolidColorBrush myDefaultColor = new SolidColorBrush(Colors.Black);
+        private Type myType = Type.floor;
 
         public event EventHandler TileEntered;
-        public event EventHandler TileTapped;
+        public event EventHandler CancelMoveMode;
+
+        public enum Type
+        {
+            floor,
+            wall
+        }
+
+        public Type TileType
+        {
+            get { return myType; }
+            set
+            {
+                myType = value;
+                if (myType == Type.wall) myDefaultColor = new SolidColorBrush(Colors.DarkRed);
+                else if (myType == Type.floor) myDefaultColor = new SolidColorBrush(Colors.Black);
+                myTile.Fill = myDefaultColor;
+            }
+        }
 
         public bool MoveMode
         {
@@ -38,7 +60,7 @@ namespace Game
                 if (myMoveMode)
                 {
                     myFilled = false;
-                    myTile.Fill = new SolidColorBrush(Colors.Black);
+                    myTile.Fill = myDefaultColor;
                 }
             }
         } 
@@ -53,15 +75,22 @@ namespace Game
         {
             if (MoveMode)
             {
-                if (myFilled)
-                    myTile.Fill = new SolidColorBrush(Colors.LightGray);
-                else
+                if (myType == Type.wall)
                 {
-                    myFilled = true;
-                    myTile.Fill = new SolidColorBrush(Colors.Gray);
+                    if (CancelMoveMode != null) CancelMoveMode(this, null);
                 }
+                else if (myType == Type.floor)
+                {
+                    if (myFilled)
+                        myTile.Fill = new SolidColorBrush(Colors.LightGray);
+                    else
+                    {
+                        myFilled = true;
+                        myTile.Fill = new SolidColorBrush(Colors.Gray);
+                    }
 
-                if (TileEntered != null) TileEntered(this, null);
+                    if (TileEntered != null) TileEntered(this, null);
+                }
             }
         }
 
@@ -69,7 +98,7 @@ namespace Game
         {
             if (MoveMode)
             {
-                if (TileTapped != null) TileTapped(this, null);
+                if (CancelMoveMode != null) CancelMoveMode(this, null);
             }
         }
     }

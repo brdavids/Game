@@ -14,7 +14,7 @@ using Windows.UI.Xaml.Navigation;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
-namespace Game
+namespace Game.World
 {
     //IDEA: Levels can be composed of multiple floors chained together
 
@@ -63,8 +63,8 @@ namespace Game
             double top = Canvas.GetTop(myCanvas);
             double left = Canvas.GetLeft(myCanvas);
 
-            Canvas.SetTop(myGoal, top + myFloor.Height - myGoal.Height);
-            Canvas.SetLeft(myGoal, left + myFloor.Width - myGoal.Width);
+            Canvas.SetTop(myGoal, top + myCanvas.Height - myGoal.Height);
+            Canvas.SetLeft(myGoal, left + myCanvas.Width - myGoal.Width);
             myGoal.GoalEntered += myGoal_GoalEntered;
             myCanvas.Children.Add(myGoal);
 
@@ -84,11 +84,11 @@ namespace Game
             myCanvas.Children.Add(myGuard1);
 
             List<Point> path2 = new List<Point>();
-            path2.Add(new Point(left + (7 * Floor.TILESIZE), top));
-            path2.Add(new Point(left + (7 * Floor.TILESIZE), top + (7 * Floor.TILESIZE)));
+            path2.Add(new Point(left + (6 * Floor.TILESIZE), top));
+            path2.Add(new Point(left + (6 * Floor.TILESIZE), top + (6 * Floor.TILESIZE)));
             myGuard2 = new Guard(path2, 3);
-            Canvas.SetTop(myGuard2, top + (7 * Floor.TILESIZE));
-            Canvas.SetLeft(myGuard2, left + (7 * Floor.TILESIZE));
+            Canvas.SetTop(myGuard2, top + (6 * Floor.TILESIZE));
+            Canvas.SetLeft(myGuard2, left + (6 * Floor.TILESIZE));
             myGuards.Add(myGuard2);
             myCanvas.Children.Add(myGuard2);
 
@@ -235,7 +235,7 @@ namespace Game
             }
         }
 
-        private void myTxtResult_Tapped(object sender, TappedRoutedEventArgs e)
+        private void myAppBarButtonQuit_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Exit();
         }
