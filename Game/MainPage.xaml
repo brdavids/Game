@@ -5,13 +5,13 @@
     xmlns:local="using:Game.World"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d" Width="Auto" Height="Auto">
+    mc:Ignorable="d" Width="Auto" Height="Auto" RequestedTheme="Dark">
     <Page.BottomAppBar>
         <AppBar x:Name="myBottomAppBar" RequestedTheme="Light">
             <AppBarButton x:Name="myAppBarButtonQuit" Label="Quit" Icon="Stop" Click="myAppBarButtonQuit_Click"/>
         </AppBar>
     </Page.BottomAppBar>
     <Canvas x:Name="myCanvas" Width="1300" Height="700" Margin="0">
-        <TextBlock x:Name="myTxtResult" Canvas.Left="514" TextWrapping="Wrap" Text="Loser!" Canvas.Top="819" FontSize="72" Visibility="Collapsed"/>
+        <TextBlock x:Name="myTxtResult" TextWrapping="Wrap" Text="Loser!" FontSize="48" Canvas.Left="587" Canvas.Top="700" Height="48" HorizontalAlignment="Center" VerticalAlignment="Bottom" Visibility="Collapsed"/>
     </Canvas>
 </Page>
